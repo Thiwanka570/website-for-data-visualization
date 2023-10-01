@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Visualize Your Data SET</h1>
+    {% block CONTENT %}
+      <div style="width: 100%;display: flex;flex-wrap: wrap;">
+        {% for data in columns %}
+          <button class="column_btn" data_column="{{data}}" style="width: 100px; height: 50px; background-color: aqua; margin-right: 10px;margin: 2px;">{{ data }}</button>
+        {% endfor %}
+      </div>
+    {% endblock %}
+
+
+
+    <script>
+        document.querySelectorAll(".column_btn").forEach(button=>{
+            button.addEventListener('click',function () {
+                const column_name=this.getAttribute('data_column');
+                console.log("Clickd button : ",column_name);
+                
+            });
+        });
+       
+    </script>
+
+  </body>
+</html>
