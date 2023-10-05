@@ -4,28 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   </head>
   <body>
-    <h1>Visualize Your Data SET</h1>
     {% block CONTENT %}
-      <div style="width: 100%;display: flex;flex-wrap: wrap;">
-        {% for data in columns %}
-          <button class="column_btn" data_column="{{data}}" style="width: 100px; height: 50px; background-color: aqua; margin-right: 10px;margin: 2px;">{{ data }}</button>
-        {% endfor %}
+    <div class="text-center mb-4" style="background-color: aquamarine;">
+      <h2 class="p-2">Visualize Your Data SET</h2>
+    </div>
+
+    <div class="container mt-5 mb-5">
+      <div class="card mx-auto" style="max-width: 400px;">
+          <div class="card-body">
+              <h4 class="card-title text-center">Upload Your Dataset</h4>
+              <form action="{% url 'dataset' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <p>
+                      {{ form.file }}
+                  </p>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Upload</button>
+                  </div>
+              </form>
+          </div>
       </div>
+  </div>
+  
+    <div class="d-flex justify-content-center align-items-center text-center">
+      <div>
+       
+          <div style="width: 100%;display: flex;flex-wrap: wrap;">
+            {% for data in columns %}
+              <button class="column_btn" data_column="{{ data }}" style="width: 100px; height: 50px; background-color: aqua; margin-right: 10px;margin: 2px;">{{ data }}</button>
+            {% endfor %}
+          </div>
+      
+      </div>
+    </div>
     {% endblock %}
 
-
-
     <script>
-        document.querySelectorAll(".column_btn").forEach(button=>{
-            button.addEventListener('click',function () {
-                const column_name=this.getAttribute('data_column');
-                console.log("Clickd button : ",column_name);
-                
-            });
-        });
-       
+      document.querySelectorAll('.column_btn').forEach((button) => {
+        button.addEventListener('click', function () {
+          const column_name = this.getAttribute('data_column')
+          console.log('Clickd button : ', column_name)
+        })
+      })
     </script>
 
   </body>

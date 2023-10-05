@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+def uploadDataset():
+    pass
 
 file_path = os.path.join(".", "myapp", "dataset", "sample.csv")
 try:
